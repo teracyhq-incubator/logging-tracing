@@ -1,0 +1,17 @@
+{
+  "name": "logging-tracing",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "logging and tracing libraries for cloud native apps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logging",
+    "tracing",
+    "cloud",
+    "native"
+  ],
+  "author": "Teracy",
+  "license": "ISC"
+}
