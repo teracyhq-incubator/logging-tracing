@@ -15,6 +15,12 @@ The target supported backends:
 
 ## How to use
 
+- npm install:
+
+```bash
+$ npm install teracyhq-incubator/logging-tracing#develop
+```
+
 
 ### Tracing
 
@@ -78,7 +84,7 @@ initTracing(opts)
 ```js
 const { getLogger } = require('logging-tracing');
 const logger = getLogger('my category');
-logger.info('msg'); // etc
+logger.info('information message'); // etc
 // see: https://github.com/winstonjs/winston
 
 // Set logging level by env var: LOGGING_LEVEL=debug|info|notice|...
