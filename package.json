@@ -13,5 +13,15 @@
     "native"
   ],
   "author": "Teracy, Inc",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/opentelemetry-cloud-trace-exporter": "^0.7.0",
+    "@google-cloud/opentelemetry-cloud-trace-propagator": "^0.6.0",
+    "@opentelemetry/api": "^0.12.0",
+    "@opentelemetry/exporter-jaeger": "^0.12.0",
+    "@opentelemetry/exporter-zipkin": "^0.12.0",
+    "@opentelemetry/node": "^0.12.0",
+    "@opentelemetry/tracing": "^0.12.0",
+    "winston": "^3.3.3"
+  }
 }
