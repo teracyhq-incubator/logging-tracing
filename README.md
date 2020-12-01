@@ -1,6 +1,6 @@
 # logging-tracing
 
-logging and tracing libraries for cloud native apps. This library uses:
+A logging and tracing library for cloud-native apps. This library uses:
 - winston for logging
 - opentelemetry for tracing and monitoring metrics
 
