@@ -76,6 +76,12 @@ const opts = {
 initTracing(opts)
 ```
 
+Make sure to:
+
+```bash
+$ npm install express @opentelemetry/plugin-http @opentelemetry/plugin-https @opentelemetry/plugin-express
+```
+
 
 ### Logging
 
@@ -107,4 +113,9 @@ logger.info('information message'); // etc
 ### Metrics
 
 //TODO(hoatle):
+
+
+### Examples
+
+- See `examples/nodejs-app` as a reference working example
 
