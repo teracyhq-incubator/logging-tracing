@@ -1,59 +1,59 @@
 const express = require('express');
-const promClient = require('prom-client')
-
 const { getLogger } = require('logging-tracing');
 
-promClient.collectDefaultMetrics()
+const { MeterProvider } = require('@opentelemetry/metrics');
+const { HostMetrics } = require('@opentelemetry/host-metrics');
+const { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');
 
-const logger1 = getLogger("category:1")
+const appLogger = getLogger("app")
+
+const exporter = new PrometheusExporter(
+  { startServer: true },() => {
+    appLogger.notice('prometheus scrape endpoint: http://localhost:9464/metrics');
+  }
+);
+
+const meterProvider = new MeterProvider({
+  exporter,
+  interval: 2000,
+});
+
+const hostMetrics = new HostMetrics({ meterProvider, name: 'nodejs-app-host-metrics' });
+hostMetrics.start();
 
 
-logger1.info('logging to console transports');
 
-logger1.error('error now!!!');
-logger1.crit('critical now!!');
+appLogger.info('logging to console transports');
 
-logger1.warning('warning from the app');
-logger1.crit('very critical now, fix it asap!!!');
-logger1.alert('someone needs to fix this problem asap!!!')
-logger1.emerg('emergency, the system is crashed!!!');
+appLogger.error('error now!!!');
+appLogger.crit('critical now!!');
+
+appLogger.warning('warning from the app');
+appLogger.crit('very critical now, fix it asap!!!');
+appLogger.alert('someone needs to fix this problem asap!!!')
+appLogger.emerg('emergency, the system is crashed!!!');
 
 const logger2 = getLogger("category:2");
 
 logger2.error('Error here from logger2');
 
 const app = express();
-const port = 3000;
-
-
-const counter = new promClient.Counter({
-  name: 'my_metric_identifier',
-  help: 'an example counter metric for this tutorial',
-});
+const port = process.env.PORT || 3000;
 
 
 app.get('/', (req, res) => {
-  logger1.info("Hello World");
-  counter.inc();
+  appLogger.info("Hello World");
   res.send('Hello World!')
 });
 
 
-app.get('/metrics', function (req, res) {
-  res.send(
-    promClient.register.metrics()
-  )
-})
-
-
 process.on('SIGINT', function() {
-  logger1.notice("Caught interrupt signal");
+  appLogger.notice("Caught interrupt signal");
   process.exit();
 });
 
 
 app.listen(port, () => {
-  logger1.notice(`Example app listening at http://localhost:${port}`);
+  appLogger.notice(`Example app listening at http://localhost:${port}`);
   throw new Error('errorrrrr~');
 });
-

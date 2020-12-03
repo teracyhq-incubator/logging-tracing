@@ -9,11 +9,13 @@
   "author": "hoatle",
   "license": "ISC",
   "dependencies": {
+    "@opentelemetry/exporter-prometheus": "^0.12.0",
+    "@opentelemetry/host-metrics": "^0.11.0",
+    "@opentelemetry/metrics": "^0.12.0",
     "@opentelemetry/plugin-express": "^0.11.0",
     "@opentelemetry/plugin-http": "^0.12.0",
     "@opentelemetry/plugin-https": "^0.12.0",
     "express": "^4.17.1",
-    "logging-tracing": "github:teracyhq-incubator/logging-tracing#develop",
-    "prom-client": "^12.0.0"
+    "logging-tracing": "github:teracyhq-incubator/logging-tracing#develop"
   }
 }
