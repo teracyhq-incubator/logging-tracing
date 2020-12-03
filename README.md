@@ -1,4 +1,4 @@
-# logging-tracing
+# @teracyhq-incubator/logging-tracing
 
 A logging and tracing library for cloud-native apps. This library uses:
 - winston for logging
