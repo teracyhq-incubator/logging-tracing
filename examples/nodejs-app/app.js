@@ -6,10 +6,11 @@ const { HostMetrics } = require('@opentelemetry/host-metrics');
 const { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');
 
 const appLogger = getLogger("app")
+const promLogger = getLogger('@opentelemetry/exporter-prometheus')
 
 const exporter = new PrometheusExporter(
-  { logger: appLogger }, () => {
-    appLogger.notice('prometheus scrape endpoint: http://localhost:9464/metrics');
+  { logger: promLogger }, () => {
+    promLogger.notice('prometheus scrape endpoint: http://localhost:9464/metrics');
   }
 );
 
