@@ -1,4 +1,4 @@
-const { initTracing } = require('logging-tracing');
+const { initTracing } = require('@teracyhq-incubator/logging-tracing');
 const { CloudPropagator } = require('@google-cloud/opentelemetry-cloud-trace-propagator');
 
 

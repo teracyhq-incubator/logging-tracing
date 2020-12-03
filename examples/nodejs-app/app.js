@@ -1,5 +1,5 @@
 const express = require('express');
-const { getLogger } = require('logging-tracing');
+const { getLogger } = require('@teracyhq-incubator/logging-tracing');
 
 const { MeterProvider } = require('@opentelemetry/metrics');
 const { HostMetrics } = require('@opentelemetry/host-metrics');

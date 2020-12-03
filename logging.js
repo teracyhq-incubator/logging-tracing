@@ -4,7 +4,7 @@ const { format } = winston;
 const { combine, json, simple, colorize, timestamp } = format;
 
 // how to use:
-// const { getLogger } = require('logging-tracing');
+// const { getLogger } = require('@teracyhq-incubator/logging-tracing');
 // const logger = getLogger('my category');
 // logger.info('information message'); // etc
 

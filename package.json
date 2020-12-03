@@ -1,5 +1,5 @@
 {
-  "name": "logging-tracing",
+  "name": "@teracyhq-incubator/logging-tracing",
   "version": "0.1.0-SNAPSHOT",
   "description": "logging and tracing libraries for cloud native apps",
   "main": "index.js",
@@ -23,5 +23,17 @@
     "@opentelemetry/node": "^0.12.0",
     "@opentelemetry/tracing": "^0.12.0",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teracyhq-incubator/logging-tracing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/teracyhq-incubator/logging-tracing/issues"
+  },
+  "homepage": "https://github.com/teracyhq-incubator/logging-tracing#readme",
+  "directories": {
+    "example": "examples"
   }
 }

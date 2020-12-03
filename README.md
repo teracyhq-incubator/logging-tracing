@@ -18,7 +18,7 @@ The target supported backends:
 - npm install:
 
 ```bash
-$ npm install teracyhq-incubator/logging-tracing#develop
+$ npm install @teracyhq-incubator/logging-tracing
 ```
 
 
@@ -27,7 +27,7 @@ $ npm install teracyhq-incubator/logging-tracing#develop
 - Create tracing.js file with the following similar content:
 
 ```js
-const { initTracing } = require('logging-tracing');
+const { initTracing } = require('@teracyhq-incubator/logging-tracing');
 // for google cloud tracing
 const { CloudPropagator } = require('@google-cloud/opentelemetry-cloud-trace-propagator');
 
@@ -39,7 +39,7 @@ let exporterOpts = {}, registerOpts = {};
 switch(exporterSpec) {
   case "ZIPKIN":
     exporterOpts = Object.assign(exporterOpts, tracing.getExporterOptions(), {
-      serviceName: "logging-tracing-app"
+      serviceName: "nodejs-app"
     });
     break;
   case "GOOGLE_CLOUD_TRACE":
@@ -92,7 +92,7 @@ $ npm install express @opentelemetry/plugin-http @opentelemetry/plugin-https @op
 - Follow the similar content below:
 
 ```js
-const { getLogger } = require('logging-tracing');
+const { getLogger } = require('@teracyhq-incubator/logging-tracing');
 const logger = getLogger('my category');
 logger.info('information message'); // etc
 
