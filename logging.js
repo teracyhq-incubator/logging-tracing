@@ -4,25 +4,22 @@ const { format } = winston;
 const { combine, json, simple, colorize, timestamp } = format;
 
 // how to use:
-// const logging = require('./logging');
-// const logger = logging.getLogger('my category');
-// logger.info('msg'); // etc
-// see: https://github.com/winstonjs/winston
+// const { getLogger } = require('logging-tracing');
+// const logger = getLogger('my category');
+// logger.info('information message'); // etc
 
 // Set logging level by env var: LOGGING_LEVEL=debug|info|notice|...
+const LEVELS = {
+  emerg: 0,  // One or more systems are unusable.
+  alert: 1,  // A person must take an action immediately.
+  crit: 2,   // Critical events cause more severe problems or outages.
+  error: 3,  // Error events are likely to cause problems.
+  warn: 4,   // Warning events might cause problems.
+  notice: 5, // Normal but significant events, such as start up, shut down, or a configuration change
+  info: 6,   // Routine information, such as ongoing status or performance.
+  debug: 7   // Debug or trace information
+};
 
-// using the logging methods/ levels below:
-// { 
-//   emerg: 0,   // One or more systems are unusable.
-//   alert: 1,   // A person must take an action immediately.
-//   crit: 2,    // Critical events cause more severe problems or outages.
-//   error: 3,   // Error events are likely to cause problems.
-//   warning: 4, // Warning events might cause problems.
-//   notice: 5,  // Normal but significant events, such as start up, shut down, or a configuration change
-//   info: 6,    // Routine information, such as ongoing status or performance.
-//   debug: 7    // Debug or trace information
-// }
-// see: https://github.com/winstonjs/triple-beam/blob/master/config/syslog.js
 
 // logging level to severity map (useful for google cloud logging)
 // see: https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity
@@ -31,7 +28,7 @@ const SEVERITIES = {
   alert: "ALERT",
   crit: "CRITICAL",
   error: "ERROR",
-  warning: "WARNING",
+  warn: "WARNING",
   notice: "NOTICE",
   info: "INFO",
   debug: "DEBUG"
@@ -101,7 +98,7 @@ const DEFAULT_FORMAT = getFormat("default");
 
 // defaut logger configuration for exceptions/ rejections handling
 winston.configure({
-  levels: winston.config.syslog.levels,
+  levels: LEVELS,
   format: DEFAULT_FORMAT,
   transports: [
     new winston.transports.Console({
@@ -119,7 +116,7 @@ const COLORS = {
   alert: 'underline red',
   crit: 'red whiteBG',
   error: 'red',
-  warning: 'yellow',
+  warn: 'yellow',
   notice: 'cyan',
   info: 'blue',
   debug: 'green'
@@ -131,7 +128,7 @@ winston.addColors(COLORS);
 exports.getLogger = function(category) {
   // default options for all loggers
   let opts = {
-    levels: winston.config.syslog.levels,
+    levels: LEVELS,
     format: getFormat(category),
     transports: [
       new winston.transports.Console({

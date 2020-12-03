@@ -95,7 +95,6 @@ $ npm install express @opentelemetry/plugin-http @opentelemetry/plugin-https @op
 const { getLogger } = require('logging-tracing');
 const logger = getLogger('my category');
 logger.info('information message'); // etc
-// see: https://github.com/winstonjs/winston
 
 // Set logging level by env var: LOGGING_LEVEL=debug|info|notice|...
 
@@ -105,12 +104,11 @@ logger.info('information message'); // etc
 //   alert: 1,   // A person must take an action immediately.
 //   crit: 2,    // Critical events cause more severe problems or outages.
 //   error: 3,   // Error events are likely to cause problems.
-//   warning: 4, // Warning events might cause problems.
+//   warn: 4, // Warning events might cause problems.
 //   notice: 5,  // Normal but significant events, such as start up, shut down, or a configuration change
 //   info: 6,    // Routine information, such as ongoing status or performance.
 //   debug: 7    // Debug or trace information
 // }
-// see: https://github.com/winstonjs/triple-beam/blob/master/config/syslog.js
 ```
 
 Logging should work out of the box on GKE, make sure to set the env var `NODE_ENV=production` when
@@ -119,7 +117,7 @@ deploying.
 
 ### Metrics
 
-//TODO(hoatle):
+//TODO(hoatle)
 
 
 ### Examples

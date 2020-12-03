@@ -8,7 +8,7 @@ const { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');
 const appLogger = getLogger("app")
 
 const exporter = new PrometheusExporter(
-  { startServer: true },() => {
+  { logger: appLogger }, () => {
     appLogger.notice('prometheus scrape endpoint: http://localhost:9464/metrics');
   }
 );
@@ -22,13 +22,12 @@ const hostMetrics = new HostMetrics({ meterProvider, name: 'nodejs-app-host-metr
 hostMetrics.start();
 
 
-
 appLogger.info('logging to console transports');
 
 appLogger.error('error now!!!');
 appLogger.crit('critical now!!');
 
-appLogger.warning('warning from the app');
+appLogger.warn('warning from the app');
 appLogger.crit('very critical now, fix it asap!!!');
 appLogger.alert('someone needs to fix this problem asap!!!')
 appLogger.emerg('emergency, the system is crashed!!!');
