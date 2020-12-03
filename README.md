@@ -78,9 +78,13 @@ initTracing(opts)
 
 Make sure to:
 
+- Install npm packages:
+
 ```bash
 $ npm install express @opentelemetry/plugin-http @opentelemetry/plugin-https @opentelemetry/plugin-express
 ```
+
+- Set env var `TRACE_EXPORTER=GOOGLE_CLOUD_TRACE` when deploying on GKE so that Google Cloud Tracing should work.
 
 
 ### Logging
@@ -108,6 +112,9 @@ logger.info('information message'); // etc
 // }
 // see: https://github.com/winstonjs/triple-beam/blob/master/config/syslog.js
 ```
+
+Logging should work out of the box on GKE, make sure to set the env var `NODE_ENV=production` when
+deploying.
 
 
 ### Metrics

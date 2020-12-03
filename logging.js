@@ -68,8 +68,9 @@ function tracingFormatter(info, opts) {
       info.trace = `projects/${process.env.GCP_PROJECT_ID}/traces/${spanContext.traceId}`;
     }
 
-    info.traceId = spanContext.traceId;
-    info.spanId = spanContext.spanId;
+    // follow https://github.com/open-telemetry/opentelemetry-specification/blob/master/specification/logs/overview.md#json-formats
+    info.traceid = spanContext.traceId;
+    info.spanid = spanContext.spanId;
   }
   return info;
 }
