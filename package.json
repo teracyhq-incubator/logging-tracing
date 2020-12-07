@@ -1,6 +1,6 @@
 {
   "name": "@teracyhq-incubator/logging-tracing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "logging and tracing libraries for cloud native apps",
   "main": "index.js",
   "scripts": {

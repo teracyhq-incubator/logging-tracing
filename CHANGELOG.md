@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.1.1][] (2020-12-07)
+
+- Bug Fixes:
+  + error: uncaughtException: logger.warning is not a function should be fixed #5
+
+Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/3?closed=1
 
 ## [v0.1.0][] (2020-12-03)
 
@@ -9,3 +15,4 @@ Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?close
 
 
 [v0.1.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?closed=1
+[v0.1.1]: https://github.com/teracyhq-incubator/logging-tracing/milestone/3?closed=1
