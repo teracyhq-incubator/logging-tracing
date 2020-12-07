@@ -46,7 +46,7 @@ function getProcessor(exporter) {
     processor = new SimpleSpanProcessor(exporter); // default
     logger.info(`tracing with ${processorSpec} processor`);
   } else {
-    logger.warning(`tracing with ${processorSpec} processor is NOT supported`);
+    logger.warn(`tracing with ${processorSpec} processor is NOT supported`);
   }
 
   return processor;
@@ -67,7 +67,7 @@ exports.getExporterOptions = function() {
   try {
     return JSON.parse(optStr)
   } catch(err) {
-    logger.warning(err);
+    logger.warn(err);
     return {};
   }
 }
@@ -81,13 +81,13 @@ exports.initTracing = function(opts) { // opts.provider; opts.exporter; opts.reg
 
   const exporter = getExporter(exporterOpts);
   if (!exporter) {
-    logger.warning("tracing exporter is not defined, so tracing is NOT initialized");
+    logger.warn("tracing exporter is not defined, so tracing is NOT initialized");
     return;
   }
   // Configure the span processor to send spans to the exporter
   const processor = getProcessor(exporter);
   if (!processor) {
-    logger.warning("tracing processor is not defined, so tracing is NOT initialized");
+    logger.warn("tracing processor is not defined, so tracing is NOT initialized");
   } else {
     const provider = new NodeTracerProvider(providerOpts);
     provider.register(registerOpts);
