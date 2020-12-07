@@ -1,4 +1,4 @@
-const { initTracing } = require('@teracyhq-incubator/logging-tracing');
+const { initTracing, getTracingExporterOptions } = require('@teracyhq-incubator/logging-tracing');
 const { CloudPropagator } = require('@google-cloud/opentelemetry-cloud-trace-propagator');
 
 
@@ -8,7 +8,7 @@ let exporterOpts = {}, registerOpts = {};
 
 switch(exporterSpec) {
   case "ZIPKIN":
-    exporterOpts = Object.assign(exporterOpts, tracing.getExporterOptions(), {
+    exporterOpts = Object.assign(exporterOpts, getTracingExporterOptions(), {
       serviceName: "nodejs-app"
     });
     break;
