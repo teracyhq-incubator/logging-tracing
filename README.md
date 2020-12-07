@@ -27,7 +27,7 @@ $ npm install @teracyhq-incubator/logging-tracing
 - Create tracing.js file with the following similar content:
 
 ```js
-const { initTracing } = require('@teracyhq-incubator/logging-tracing');
+const { initTracing, getTracingExporterOptions } = require('@teracyhq-incubator/logging-tracing');
 // for google cloud tracing
 const { CloudPropagator } = require('@google-cloud/opentelemetry-cloud-trace-propagator');
 
@@ -38,7 +38,7 @@ let exporterOpts = {}, registerOpts = {};
 
 switch(exporterSpec) {
   case "ZIPKIN":
-    exporterOpts = Object.assign(exporterOpts, tracing.getExporterOptions(), {
+    exporterOpts = Object.assign(exporterOpts, getTracingExporterOptions(), {
       serviceName: "nodejs-app"
     });
     break;
