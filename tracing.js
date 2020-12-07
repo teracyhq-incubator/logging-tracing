@@ -62,7 +62,7 @@ function getProcessor(exporter) {
 // See https://developers.google.com/identity/protocols/application-default-credentials
 // for more details.
 
-exports.getExporterOptions = function() {
+exports.getTracingExporterOptions = function() {
   const optStr = process.env.TRACE_EXPORTER_OPTIONS || "{}";
   try {
     return JSON.parse(optStr)
