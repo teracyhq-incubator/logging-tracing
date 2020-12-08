@@ -1,4 +1,5 @@
 const express = require('express');
+const winston = require('winston');
 const { getLogger } = require('@teracyhq-incubator/logging-tracing');
 
 const { MeterProvider } = require('@opentelemetry/metrics');
@@ -6,7 +7,13 @@ const { HostMetrics } = require('@opentelemetry/host-metrics');
 const { PrometheusExporter } = require('@opentelemetry/exporter-prometheus');
 
 const appLogger = getLogger("app")
-const promLogger = getLogger('@opentelemetry/exporter-prometheus')
+const promLogger = getLogger('@opentelemetry/exporter-prometheus', {
+  transports: [
+    new winston.transports.Console({
+      level: 'info'
+    })
+  ]
+})
 
 const exporter = new PrometheusExporter(
   { logger: promLogger }, () => {
@@ -24,6 +31,7 @@ hostMetrics.start();
 
 
 appLogger.info('logging to console transports');
+appLogger.info('hello', {name: 'John Doe'});
 
 appLogger.error('error now!!!');
 appLogger.crit('critical now!!');
@@ -35,7 +43,18 @@ appLogger.emerg('emergency, the system is crashed!!!');
 
 const logger2 = getLogger("category:2");
 
+logger2.debug("debug information");
 logger2.error('Error here from logger2');
+
+const overrideLogger = getLogger("overrideLogger", {
+  transports: [
+    new winston.transports.Console({
+      level: 'debug'
+    })
+  ]
+});
+
+overrideLogger.debug("debug information");
 
 const app = express();
 const port = process.env.PORT || 3000;
