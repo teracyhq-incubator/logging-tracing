@@ -1,5 +1,11 @@
 # Change Log
 
+## [v0.3.0][] (2020-12-09)
+
+- Features:
+  + should support override options when getLogger #11
+
+Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/4?closed=1
 
 ## [v0.2.0][] (2020-12-07)
 
@@ -26,3 +32,5 @@ Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?close
 [v0.1.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?closed=1
 [v0.1.1]: https://github.com/teracyhq-incubator/logging-tracing/milestone/3?closed=1
 [v0.2.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/2?closed=1
+[v0.3.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/4?closed=1
+
