@@ -125,9 +125,9 @@ const COLORS = {
 winston.addColors(COLORS);
 
 // get or create logger by its category name
-exports.getLogger = function(category) {
+exports.getLogger = function(category, optsOverride) {
   // default options for all loggers
-  let opts = {
+  let opts = Object.assign({}, {
     levels: LEVELS,
     format: getFormat(category),
     transports: [
@@ -135,7 +135,7 @@ exports.getLogger = function(category) {
         level: LOGGING_LEVEL
       })
     ]
-  };
+  }, optsOverride || {});
 
   return winston.loggers.get(category, opts);
 }

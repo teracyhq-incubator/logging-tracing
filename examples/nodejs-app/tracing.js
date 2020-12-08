@@ -1,6 +1,14 @@
-const { initTracing, getTracingExporterOptions } = require('@teracyhq-incubator/logging-tracing');
+const winston = require('winston');
+const { getLogger, initTracing, getTracingExporterOptions } = require('@teracyhq-incubator/logging-tracing');
 const { CloudPropagator } = require('@google-cloud/opentelemetry-cloud-trace-propagator');
 
+const tracingLogger = getLogger('tracing', {
+  transports: [
+    new winston.transports.Console({
+      level: 'info'
+    })
+  ]
+});
 
 const exporterSpec = process.env.TRACE_EXPORTER || "";
 
@@ -23,6 +31,7 @@ switch(exporterSpec) {
 
 const opts = {
   provider: {
+    logger: tracingLogger,
     plugins: {
       http: {
         enabled: true,
