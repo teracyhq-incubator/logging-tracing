@@ -1,7 +1,7 @@
 const opentelemetry = require('@opentelemetry/api');
 const winston = require('winston');
 const { format } = winston;
-const { combine, json, simple, colorize, timestamp } = format;
+const { combine, json, simple, colorize, timestamp, splat } = format;
 
 // how to use:
 // const { getLogger } = require('@teracyhq-incubator/logging-tracing');
@@ -80,6 +80,7 @@ function getFormat(category) {
       format(tracingFormatter)(),
       timestamp(),
       colorize(),
+      splat(),
       simple(),
     );
   } else {
@@ -87,6 +88,7 @@ function getFormat(category) {
       format(gcloudFormatter(category))(),
       format(tracingFormatter)(),
       timestamp(),
+      splat(),
       json()
     );
   }

@@ -73,6 +73,6 @@ process.on('SIGINT', function() {
 
 
 app.listen(port, () => {
-  appLogger.notice(`Example app listening at http://localhost:${port}`);
+  appLogger.notice('Example app listening at http://localhost:%s', port);
   throw new Error('errorrrrr~');
 });
