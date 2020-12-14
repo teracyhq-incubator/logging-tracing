@@ -1,5 +1,12 @@
 # Change Log
 
+## [v0.4.0][] (2020-12-14)
+
+- Features:
+  + should add support for string interpolation with format.splat #14
+
+Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/5?closed=1
+
 ## [v0.3.0][] (2020-12-09)
 
 - Features:
@@ -33,4 +40,4 @@ Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?close
 [v0.1.1]: https://github.com/teracyhq-incubator/logging-tracing/milestone/3?closed=1
 [v0.2.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/2?closed=1
 [v0.3.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/4?closed=1
-
+[v0.4.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/5?closed=1
