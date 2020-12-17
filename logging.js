@@ -44,6 +44,20 @@ const LOGGING_LEVEL = (function() {
   }
 })();
 
+const LOGGING_FORMAT = (() => {
+  // default
+  let loggingFormat = process.env.NODE_ENV == 'production'? 'json' : 'simple'
+  if (process.env.LOGGING_FORMAT) {
+    let loggingFormatEnvVar = process.env.LOGGING_FORMAT.toLowerCase();
+    if (loggingFormatEnvVar == 'json' || loggingFormatEnvVar == 'simple') {
+      loggingFormat = loggingFormatEnvVar;
+    } else {
+      console.warn && console.warn('Invalid LOGGING_FORMAT env var: %s', process.env.LOGGING_FORMAT)
+    }
+  }
+  return loggingFormat;
+})();
+
 // add info.category
 function categorize(category) {
   return (info, opts) => {
@@ -80,15 +94,14 @@ function tracingFormatter(info, opts) {
 
 // get the format option
 function getFormat(category) {
-  if (process.env.NODE_ENV !== 'production') {
+  if (LOGGING_FORMAT == 'json') {
     return combine(
       format(categorize(category))(),
       format(gcloudFormatter)(),
       format(tracingFormatter)(),
       timestamp(),
-      colorize(),
       splat(),
-      simple(),
+      json(),
     );
   } else {
     return combine(
@@ -96,8 +109,9 @@ function getFormat(category) {
       format(gcloudFormatter)(),
       format(tracingFormatter)(),
       timestamp(),
+      colorize(),
       splat(),
-      json()
+      simple()
     );
   }
 }
