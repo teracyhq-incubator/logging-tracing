@@ -2,6 +2,7 @@ const opentelemetry = require('@opentelemetry/api');
 const winston = require('winston');
 const { format } = winston;
 const { combine, json, simple, colorize, timestamp, splat } = format;
+const { boolean } = require('boolean');
 
 // how to use:
 // const { getLogger } = require('@teracyhq-incubator/logging-tracing');
@@ -43,15 +44,20 @@ const LOGGING_LEVEL = (function() {
   }
 })();
 
-function gcloudFormatter(category) {
-  return (info, opts) =>  {
+// add info.category
+function categorize(category) {
+  return (info, opts) => {
     info.category = category;
-    if (process.env.NODE_ENV == 'production') {
-      info.severity = SEVERITIES[info.level] || "DEFAULT";
-      delete info.level;
-    }
     return info;
   }
+}
+
+function gcloudFormatter(info, opts) {
+  if (boolean(process.env.GCP_LOGGING_FORMAT_ENABLED)) {
+    info.severity = SEVERITIES[info.level] || "DEFAULT";
+    delete info.level;
+  }
+  return info;
 }
 
 // add tracing info to log entry if available
@@ -76,7 +82,8 @@ function tracingFormatter(info, opts) {
 function getFormat(category) {
   if (process.env.NODE_ENV !== 'production') {
     return combine(
-      format(gcloudFormatter(category))(),
+      format(categorize(category))(),
+      format(gcloudFormatter)(),
       format(tracingFormatter)(),
       timestamp(),
       colorize(),
@@ -85,7 +92,8 @@ function getFormat(category) {
     );
   } else {
     return combine(
-      format(gcloudFormatter(category))(),
+      format(categorize(category))(),
+      format(gcloudFormatter)(),
       format(tracingFormatter)(),
       timestamp(),
       splat(),
