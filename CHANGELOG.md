@@ -1,5 +1,13 @@
 # Change Log
 
+## [v0.5.0][] (2020-12-18)
+
+- Features:
+  + should use env var for logging format config #17
+  + should replace info.level by info.severity when explicitly configured #19
+
+Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/6?closed=1
+
 ## [v0.4.0][] (2020-12-14)
 
 - Features:
@@ -41,3 +49,4 @@ Details: https://github.com/teracyhq-incubator/logging-tracing/milestone/1?close
 [v0.2.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/2?closed=1
 [v0.3.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/4?closed=1
 [v0.4.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/5?closed=1
+[v0.5.0]: https://github.com/teracyhq-incubator/logging-tracing/milestone/6?closed=1
